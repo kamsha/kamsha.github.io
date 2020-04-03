@@ -1,1 +1,108 @@
-WT
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link href='https://fonts.googleapis.com/css?family=Aladin' rel='stylesheet'>
+	<style>
+		#technique {
+		    	font-family: 'Aladin';
+		    	font-size: 5vw;
+		    	font-weight: lighter;
+		}
+
+		#left, #middle, #right {
+			display: inline-block;
+			*display: inline;
+			zoom: 1;
+			vertical-align: top;
+		}
+
+		#left {
+			width: 45%;
+			text-align: right;
+		}
+
+		#right { 
+			width: 45%;
+			text-align: left;
+		}
+
+		#middle {
+			width: 5%;
+	                text-align: center;
+		}
+
+		p {
+			padding: 0;
+			margin: 0;
+		}
+
+		#speed {
+			direction: rtl
+		}
+
+		.center {
+			left: 0;
+	                line-height: 200px;
+	                position: absolute;
+	                top: 35%;
+	                width: 100%;
+		}
+
+		div {
+			color: #AF4319;
+		}
+
+		html {
+		    	min-height: 100%;
+		}
+
+		body {
+			background: #8C7A6B;
+		    	background: linear-gradient(#323031, #2D2D2A);
+		}
+
+		.slidecontainer {
+			position: fixed;
+			bottom: 2%;
+			width: 100%;
+		    	font-family: 'Aladin';
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+  <div id="technique" class="center">
+	<div id="left">
+		  <p id="technique1">Technique</p>
+	</div>
+	<div id="middle">
+		<p>-</p>
+	</div>
+	<div id="right">
+		  <p id="technique2">Technique</p>
+	</div>
+  </div>
+
+  <div class="slidecontainer">
+	Slow <input type="range" min="500" max="2000" value="750" class="slider" id="speed"> Fast
+  </div>
+
+  <script>
+	const sleep = (milliseconds) => {
+  		return new Promise(resolve => setTimeout(resolve, milliseconds))
+	}
+
+	const techniques = [["Tan Sau", "Kuen"], ["Tan Sau", "Dai Wong Cheng"], ["Fok Sau", "Kuen"], ["Gan Sau", "Kuen"]];
+	const selectTechnique = async () => {
+		while (true) {
+			let technique_id = Math.floor(Math.random() * techniques.length);
+			document.getElementById("technique1").innerHTML = techniques[technique_id][0];
+			document.getElementById("technique2").innerHTML = techniques[technique_id][1];
+			let speed = document.getElementById("speed").value;
+			await sleep(speed);
+		}
+	}
+	selectTechnique();
+  </script>
+</body>
+</html>
